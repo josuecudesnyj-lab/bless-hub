@@ -1,0 +1,51 @@
+-- ======================
+-- FRAME PRINCIPAL (la UI grande)
+-- ======================
+local Frame = Instance.new("Frame")
+Frame.Size = UDim2.new(0, 180, 0, 260)
+Frame.Position = UDim2.new(0, 15, 0.5, -130)
+Frame.BackgroundColor3 = Color3.fromRGB(20, 20, 25)
+Frame.BackgroundTransparency = 0.2
+Frame.BorderSizePixel = 0
+Frame.Parent = ScreenGui
+
+local UICorner = Instance.new("UICorner")
+UICorner.CornerRadius = UDim.new(0, 10)
+UICorner.Parent = Frame
+
+-- ======================
+-- BOTÓN PARA ABRIR / CERRAR LA UI
+-- ======================
+local ToggleBtn = Instance.new("TextButton")
+ToggleBtn.Name = "ToggleUI"
+ToggleBtn.Size = UDim2.new(0, 50, 0, 50)
+ToggleBtn.Position = UDim2.new(0, 15, 0.5, -180) -- Arriba del panel
+ToggleBtn.BackgroundColor3 = Color3.fromRGB(0, 140, 255)
+ToggleBtn.Text = "ESP"
+ToggleBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleBtn.Font = Enum.Font.GothamBold
+ToggleBtn.TextSize = 16
+ToggleBtn.Parent = ScreenGui
+
+local ToggleCorner = Instance.new("UICorner")
+ToggleCorner.CornerRadius = UDim.new(1, 0) -- Redondo
+ToggleCorner.Parent = ToggleBtn
+
+-- Que empiece cerrado
+Frame.Visible = false
+
+-- Función para abrir/cerrar
+local uiOpen = false
+
+ToggleBtn.MouseButton1Click:Connect(function()
+	uiOpen = not uiOpen
+	Frame.Visible = uiOpen
+
+	if uiOpen then
+		ToggleBtn.Text = "X"
+		ToggleBtn.BackgroundColor3 = Color3.fromRGB(200, 50, 50)
+	else
+		ToggleBtn.Text = "ESP"
+		ToggleBtn.BackgroundColor3 = Color3.fromRGB(0, 140, 255)
+	end
+end)
